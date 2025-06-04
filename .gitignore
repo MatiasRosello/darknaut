@@ -1,6 +1,6 @@
 # Archivos de Unity que NO deben subirse
 [Ll]ibrary/
-[Tt]emp/
+/[Tt]emp/
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
