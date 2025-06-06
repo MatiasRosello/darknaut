@@ -1748,6 +1748,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 963725028759693790, guid: e5077f6373a43ed4ebacdc86115f1dc9,
         type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1723617038}
+    - target: {fileID: 963725028759693790, guid: e5077f6373a43ed4ebacdc86115f1dc9,
+        type: 3}
       propertyPath: waypoints.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -1771,6 +1776,16 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[3]
       value: 
       objectReference: {fileID: 1477777853}
+    - target: {fileID: 4269197310494374284, guid: e5077f6373a43ed4ebacdc86115f1dc9,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269197310494374284, guid: e5077f6373a43ed4ebacdc86115f1dc9,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4568001028110198292, guid: e5077f6373a43ed4ebacdc86115f1dc9,
         type: 3}
       propertyPath: m_Name
@@ -1831,6 +1846,11 @@ PrefabInstance:
       propertyPath: hearingRadius
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8402172922366477060, guid: e5077f6373a43ed4ebacdc86115f1dc9,
+        type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1723617038}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

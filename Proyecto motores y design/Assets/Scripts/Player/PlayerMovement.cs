@@ -14,8 +14,17 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float rotationThreshhold = 0.1f; //esto es un parametro que evita rotaciones muy pequeñas, cuando el cursor esta muy cerca del jugador
-
     [SerializeField] private Camera mainCamera;
+
+    [SerializeField] private float runStepInterval = 0.4f;  //espera entre ruidos al moverse de diferentes formas
+    [SerializeField] private float walkStepInterval = 0.6f;
+    [SerializeField] private float crouchStepInterval = 1.2f;
+
+    [SerializeField] private float runNoiseIntensity = 1.5f;
+    [SerializeField] private float walkNoiseIntensity = 1f;
+    [SerializeField] private float crouchNoiseIntensity = 0.3f;
+
+    private float nextStepTime = 0f;
 
     void Start()
     {
@@ -44,11 +53,14 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.LeftShift))  //La velocidad de correr lo modifica multiplicando por "runningMult"
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        bool isCrouching = Input.GetKey(KeyCode.LeftControl);
+
+        if (isRunning)  //La velocidad de correr lo modifica multiplicando por "runningMult"
         {
             playerSpeed = walkSpeed * runningMult;
         }
-        else if (Input.GetKey(KeyCode.LeftControl)) //La velocidad de agacharse lo modifica multiplicando por "crouchMult"
+        else if (isCrouching) //La velocidad de agacharse lo modifica multiplicando por "crouchMult"
         {
             playerSpeed = walkSpeed * crouchMult;
         }
@@ -69,8 +81,37 @@ public class PlayerMovement : MonoBehaviour
             direction.Normalize();
         }
          
-        transform.Translate(direction * playerSpeed * Time.deltaTime, Space.World);  //esto traduce los vectores locales del player a vectores globales para que el player
-    }                                                                                //siempre se mueva de manera absoluta para adelante sin importar su rotacion
+        transform.Translate(direction * playerSpeed * Time.deltaTime, Space.World);   //esto traduce los vectores locales del player a vectores globales para que el player
+                                                                                      //siempre se mueva de manera absoluta para adelante sin importar su rotacion
+        if (IsGrounded && direction.magnitude > 0f)
+        {
+            float now = Time.time;
+
+            float interval = walkStepInterval;
+            float intensity = walkNoiseIntensity;
+
+            if (isRunning)
+            {
+                interval = runStepInterval;
+                intensity = runNoiseIntensity;
+            }
+            else if (isCrouching)
+            {
+                interval = crouchStepInterval;
+                intensity = crouchNoiseIntensity;
+            }
+
+            if (now >= nextStepTime)
+            {
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.MakeNoise(transform.position, intensity);
+                }
+                nextStepTime = now + interval;
+            }
+        }
+
+    }
 
     private void PlayerRotate()
     {

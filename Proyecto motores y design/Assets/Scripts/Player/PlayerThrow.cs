@@ -22,7 +22,6 @@ public class PlayerThrow : MonoBehaviour
         {
             ThrowCoin();
             lastLaunchTime = Time.time;
-
         }
     }
 
