@@ -14,7 +14,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float JumpForce = 6f;
 
     public bool IsGrounded;
+    public bool playerOnGlass;
     private Rigidbody rb;
+    private BrokenGlassCollider glass;
 
     private PlayerSounds source;
 
@@ -30,15 +32,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float walkNoiseIntensity = 1f;
     [SerializeField] private float crouchNoiseIntensity = 0.3f;
 
+    private float intensity;
+    private float interval;
+
     //VARIABLE DE PANTALLA DE VICTORIA CREADA POR TOMAS
-    private bool IsWin;
+    //private bool IsWin;
 
     private float nextStepTime = 0f;
 
     void Start()
     {
-         rb = GetComponent<Rigidbody>();
-        
+        rb = GetComponent<Rigidbody>();
+        glass = GameObject.FindGameObjectWithTag("Glass").GetComponent<BrokenGlassCollider>();
 
         if (mainCamera == null)
         {
@@ -51,19 +56,20 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-   void Update()
-{
-    if (Input.GetKeyDown(KeyCode.Escape))
-    {
-        UIManager.inst.ShowPauseScreen();
-    }
-
-    if (!UIManager.inst.Pause) // Solo permite movimiento y rotación si no está en pausa
+    void Update()
     {
         PlayerMove();
         PlayerRotate();
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    UIManager.inst.ShowPauseScreen();
+        //}
+
+        //if (!UIManager.inst.Pause) // Solo permite movimiento y rotación si no está en pausa
+        //{
+            
+        //}
     }
-}
 
     private void PlayerMove()
     {
@@ -105,8 +111,8 @@ public class PlayerMovement : MonoBehaviour
         {
             float now = Time.time;
 
-            float interval = walkStepInterval;
-            float intensity = walkNoiseIntensity;
+            interval = walkStepInterval;
+            intensity = walkNoiseIntensity;
 
             if (isRunning)
             {
@@ -123,7 +129,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (SoundManager.Instance != null)
                 {
-                    SoundManager.Instance.MakeNoise(transform.position, intensity);
+                    if (!playerOnGlass)
+                    {
+                        SoundManager.Instance.MakeNoise(transform.position, intensity);
+                    }
+                    if (playerOnGlass)
+                    {
+                        glass.AmplifySound(transform.position, intensity);
+                    }
                 }
                 nextStepTime = now + interval;
             }
@@ -164,23 +177,40 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
         {
             IsGrounded = true;
         }
 
-        if (collision.gameObject.tag == "End" && !IsWin)
-        {
-            UIManager.inst.ShowWinScreen();
-            IsWin = true;
-        }
+        //if (collision.gameObject.tag == "End" && !IsWin)
+        //{
+        //    UIManager.inst.ShowWinScreen();
+        //    IsWin = true;
+        //}
     }
 
     public void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
         {
             IsGrounded = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Glass"))
+        {
+            playerOnGlass = true;
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Glass"))
+        {
+            playerOnGlass = false;
         }
     }
 }

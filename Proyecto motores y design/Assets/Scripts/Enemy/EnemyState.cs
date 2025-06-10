@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class EnemyState : MonoBehaviour
 {
     [SerializeField] private Transform[] waypoints;
     [SerializeField] private float patrolSpeed = 12f;
@@ -20,14 +20,16 @@ public class EnemyController : MonoBehaviour
     private int currentWaypointIndex = 0;
     private bool isInvestigating = false;
     private bool isChasing = false;
+    
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         if (agent == null)
         {
-            Debug.LogError($"[EnemyController] Se requiere un NavMeshAgent en {name}.");
+            Debug.LogError($"[EnemyController] Se requiere un NavMeshAgent en {name}."); 
         }
+
     }
 
     private void Start()

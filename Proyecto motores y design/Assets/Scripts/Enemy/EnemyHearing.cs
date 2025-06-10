@@ -9,17 +9,19 @@ public class EnemyHearing : MonoBehaviour
 
     [SerializeField] private float detectionThreshold = 0.3f;
 
+    [SerializeField] private float playerMakingSoundThreshold = 1f;
+
     [SerializeField] private Transform playerTransform;
 
-    private EnemyController enemyController;
+    private EnemyState enemyState;
 
     private void Awake()
     {
-        enemyController = GetComponent<EnemyController>();
-        if (enemyController == null)
-            Debug.LogError($"[Hearing] No se encontró EnemyController en {name}");
+        enemyState = GetComponent<EnemyState>();
+        if (enemyState == null)
+            Debug.LogError($"[Hearing] No se encontró EnemyState en {name}");
         else
-            Debug.Log($"[Hearing] {name} encontró su EnemyController ok.");
+            Debug.Log($"[Hearing] {name} encontró su EnemyState ok.");
     }
     private void Start()
     {
@@ -56,7 +58,7 @@ public class EnemyHearing : MonoBehaviour
             if (distToPlayer <= detectionThreshold)
             {
                 Debug.Log($"[Hearing] {name}: jugador a {distToPlayer:F2} ≤ {detectionThreshold}. ¡Detectado cuerpo a cuerpo!");
-                enemyController.ChasePlayer();
+                enemyState.ChasePlayer();
                 return;
             }
         }
@@ -72,15 +74,17 @@ public class EnemyHearing : MonoBehaviour
             {
                 float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
 
-                if (distanceToPlayer <= enemyController.chaseRadius)
+                float soundDistToPlayer = Vector3.Distance(noisePosition, playerTransform.position);
+
+                if (distanceToPlayer <= enemyState.chaseRadius && soundDistToPlayer < playerMakingSoundThreshold)
                 {
-                    enemyController.ChasePlayer();
+                    enemyState.ChasePlayer();
                     return;
                 }
             }
 
             Debug.Log($"[Hearing] {name}: ¡Oí ruido, voy a InvestigateNoise!");
-            enemyController.InvestigateNoise(noisePosition);
+            enemyState.InvestigateNoise(noisePosition);
         }
     }
 
@@ -93,12 +97,13 @@ public class EnemyHearing : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, hearingRadius);
+        Gizmos.DrawWireSphere(playerTransform.position, playerMakingSoundThreshold);
 
         if (playerTransform != null)
         {
             // Opcional: dibujar chaseRadius en rojo para ver hasta dónde persigue
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, enemyController != null ? enemyController.chaseRadius : 0f);
+            Gizmos.DrawWireSphere(transform.position, enemyState != null ? enemyState.chaseRadius : 0f);
         }
     }
 }
