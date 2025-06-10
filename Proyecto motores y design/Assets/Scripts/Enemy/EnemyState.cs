@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyState : MonoBehaviour
 {
     [SerializeField] private Transform[] waypoints;
-    [SerializeField] private float patrolSpeed = 12f;
+    [SerializeField] private float patrolSpeed = 3f;
     [SerializeField] private float chaseMult = 1.2f;
 
     [SerializeField] private float investigateDuration = 3f;
@@ -36,7 +36,7 @@ public class EnemyState : MonoBehaviour
     {
         if (playerTransform == null)
         {
-            Debug.LogWarning($"[EnemyController] {name}: No se asignï¿½ playerTransform en el Inspector.");
+            Debug.LogWarning($"[EnemyController] {name}: No se asignó playerTransform en el Inspector.");
         }
 
         agent.speed = patrolSpeed;
@@ -64,7 +64,7 @@ public class EnemyState : MonoBehaviour
         // Si estamos investigando, no seguimos patrullando de manera normal
         if (isInvestigating) return;
 
-        // Si el agente llegï¿½ (o prï¿½cticamente llegï¿½) al waypoint actual, avanzamos al siguiente
+        // Si el agente llegó (o prácticamente llegó) al waypoint actual, avanzamos al siguiente
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             GoNextWaypoint();
@@ -85,7 +85,7 @@ public class EnemyState : MonoBehaviour
 
         isChasing = true;
         agent.speed = patrolSpeed * chaseMult;
-        Debug.Log($"[EnemyController] {name} entra en PERSECUCIï¿½N hacia {playerTransform.name}");
+        Debug.Log($"[EnemyController] {name} entra en PERSECUCIÓN hacia {playerTransform.name}");
     }
 
     private void StopChasing()
@@ -95,7 +95,7 @@ public class EnemyState : MonoBehaviour
 
         agent.speed = patrolSpeed;
 
-        // Encontrar el waypoint mï¿½s cercano para reanudar la patrulla:
+        // Encontrar el waypoint más cercano para reanudar la patrulla:
         if (waypoints != null && waypoints.Length > 0)
         {
             float minDist = float.MaxValue;
@@ -119,7 +119,7 @@ public class EnemyState : MonoBehaviour
         }
     }
 
-    private void GoNextWaypoint()  // Avanza al siguiente waypoint en orden cï¿½clico.
+    private void GoNextWaypoint()  // Avanza al siguiente waypoint en orden cíclico.
     {
         if (waypoints == null || waypoints.Length == 0) return;
 
@@ -131,7 +131,7 @@ public class EnemyState : MonoBehaviour
 
     public void InvestigateNoise(Vector3 noisePosition)
     {
-        // Si ya estï¿½ investigando algo, ignoramos nuevos ruidos hasta terminar
+        // Si ya está investigando algo, ignoramos nuevos ruidos hasta terminar
         if (isInvestigating) return;
 
         StopAllCoroutines();

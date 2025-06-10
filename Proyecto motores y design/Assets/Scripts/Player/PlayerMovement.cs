@@ -1,13 +1,9 @@
-using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float playerSpeed;
-    [SerializeField] private float walkSpeed = 5f;
+    [SerializeField] private float walkSpeed = 15f;
     [SerializeField] private float crouchMult = 0.8f;
     [SerializeField] private float runningMult = 1.3f;
 
@@ -18,10 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private BrokenGlassCollider glass;
 
-    private PlayerSounds source;
-
     [SerializeField] private float rotationSpeed = 10f;
-    [SerializeField] private float rotationThreshhold = 0.1f; //esto es un parametro que evita rotaciones muy pequeï¿½as, cuando el cursor esta muy cerca del jugador
+    [SerializeField] private float rotationThreshhold = 0.1f; //esto es un parametro que evita rotaciones muy pequeñas, cuando el cursor esta muy cerca del jugador
     [SerializeField] private Camera mainCamera;
 
     [SerializeField] private float runStepInterval = 0.4f;  //espera entre ruidos al moverse de diferentes formas
@@ -50,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             mainCamera = Camera.main;
             if (mainCamera == null)
             {
-                //Debug.LogWarning("No se encontrï¿½ ninguna cï¿½mara principal asignada ni en el Inspector ni via Camera.main.");
+                Debug.LogWarning("No se encontró ninguna cámara principal asignada ni en el Inspector ni via Camera.main.");
             }
         }
 
@@ -65,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         //    UIManager.inst.ShowPauseScreen();
         //}
 
-        //if (!UIManager.inst.Pause) // Solo permite movimiento y rotaciÃ³n si no estÃ¡ en pausa
+        //if (!UIManager.inst.Pause) // Solo permite movimiento y rotación si no está en pausa
         //{
             
         //}
@@ -168,9 +162,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsGrounded)
         {
-            source.PlayJumpNoise();
             rb.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
-            
         }
 
     }
