@@ -3,12 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
-  tags: []
-=======
   tags:
+  - Glass
   - Ground
->>>>>>> parent of 461a5f0 (UI , pausa, victoria, Sounds)
+  - End
   layers:
   - Default
   - TransparentFX

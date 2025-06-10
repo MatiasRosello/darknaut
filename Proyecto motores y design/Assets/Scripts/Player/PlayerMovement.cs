@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private BrokenGlassCollider glass;
 
     [SerializeField] private float rotationSpeed = 10f;
-    [SerializeField] private float rotationThreshhold = 0.1f; //esto es un parametro que evita rotaciones muy pequeñas, cuando el cursor esta muy cerca del jugador
+    [SerializeField] private float rotationThreshhold = 0.1f; //esto es un parametro que evita rotaciones muy pequeï¿½as, cuando el cursor esta muy cerca del jugador
     [SerializeField] private Camera mainCamera;
 
     [SerializeField] private float runStepInterval = 0.4f;  //espera entre ruidos al moverse de diferentes formas
@@ -30,12 +30,15 @@ public class PlayerMovement : MonoBehaviour
     private float interval;
 
     //VARIABLE DE PANTALLA DE VICTORIA CREADA POR TOMAS
-    //private bool IsWin;
+    private bool IsWin;
+
+    private PlayerSounds source;
 
     private float nextStepTime = 0f;
 
     void Start()
     {
+        source = GetComponent<PlayerSounds>();
         rb = GetComponent<Rigidbody>();
         glass = GameObject.FindGameObjectWithTag("Glass").GetComponent<BrokenGlassCollider>();
 
@@ -44,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
             mainCamera = Camera.main;
             if (mainCamera == null)
             {
-                Debug.LogWarning("No se encontró ninguna cámara principal asignada ni en el Inspector ni via Camera.main.");
+                Debug.LogWarning("No se encontrï¿½ ninguna cï¿½mara principal asignada ni en el Inspector ni via Camera.main.");
             }
         }
 
@@ -54,15 +57,17 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerMove();
         PlayerRotate();
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    UIManager.inst.ShowPauseScreen();
-        //}
+        
 
-        //if (!UIManager.inst.Pause) // Solo permite movimiento y rotación si no está en pausa
-        //{
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UIManager.inst.ShowPauseScreen();
+        }
+
+        if (!UIManager.inst.Pause) // Solo permite movimiento y rotaciï¿½n si no estï¿½ en pausa
+        {
             
-        //}
+        }
     }
 
     private void PlayerMove()
@@ -162,6 +167,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsGrounded)
         {
+            source.PlayJumpNoise();
             rb.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
         }
 
@@ -174,11 +180,11 @@ public class PlayerMovement : MonoBehaviour
             IsGrounded = true;
         }
 
-        //if (collision.gameObject.tag == "End" && !IsWin)
-        //{
-        //    UIManager.inst.ShowWinScreen();
-        //    IsWin = true;
-        //}
+        if (collision.gameObject.tag == "End" && !IsWin)
+        {
+            UIManager.inst.ShowWinScreen();
+            IsWin = true;
+        }
     }
 
     public void OnCollisionExit(Collision collision)
