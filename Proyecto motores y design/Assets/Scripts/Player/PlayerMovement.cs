@@ -1,9 +1,13 @@
+using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float playerSpeed;
-    [SerializeField] private float walkSpeed = 15f;
+    [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float crouchMult = 0.8f;
     [SerializeField] private float runningMult = 1.3f;
 
@@ -12,8 +16,10 @@ public class PlayerMovement : MonoBehaviour
     public bool IsGrounded;
     private Rigidbody rb;
 
+    private PlayerSounds source;
+
     [SerializeField] private float rotationSpeed = 10f;
-    [SerializeField] private float rotationThreshhold = 0.1f; //esto es un parametro que evita rotaciones muy pequeñas, cuando el cursor esta muy cerca del jugador
+    [SerializeField] private float rotationThreshhold = 0.1f; //esto es un parametro que evita rotaciones muy pequeï¿½as, cuando el cursor esta muy cerca del jugador
     [SerializeField] private Camera mainCamera;
 
     [SerializeField] private float runStepInterval = 0.4f;  //espera entre ruidos al moverse de diferentes formas
@@ -24,28 +30,40 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float walkNoiseIntensity = 1f;
     [SerializeField] private float crouchNoiseIntensity = 0.3f;
 
+    //VARIABLE DE PANTALLA DE VICTORIA CREADA POR TOMAS
+    private bool IsWin;
+
     private float nextStepTime = 0f;
 
     void Start()
     {
          rb = GetComponent<Rigidbody>();
+        
 
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
             if (mainCamera == null)
             {
-                Debug.LogWarning("No se encontró ninguna cámara principal asignada ni en el Inspector ni via Camera.main.");
+                //Debug.LogWarning("No se encontrï¿½ ninguna cï¿½mara principal asignada ni en el Inspector ni via Camera.main.");
             }
         }
 
     }
 
-    void Update()
+   void Update()
+{
+    if (Input.GetKeyDown(KeyCode.Escape))
+    {
+        UIManager.inst.ShowPauseScreen();
+    }
+
+    if (!UIManager.inst.Pause) // Solo permite movimiento y rotaciÃ³n si no estÃ¡ en pausa
     {
         PlayerMove();
         PlayerRotate();
     }
+}
 
     private void PlayerMove()
     {
@@ -137,7 +155,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsGrounded)
         {
+            source.PlayJumpNoise();
             rb.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
+            
         }
 
     }
@@ -147,6 +167,12 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             IsGrounded = true;
+        }
+
+        if (collision.gameObject.tag == "End" && !IsWin)
+        {
+            UIManager.inst.ShowWinScreen();
+            IsWin = true;
         }
     }
 

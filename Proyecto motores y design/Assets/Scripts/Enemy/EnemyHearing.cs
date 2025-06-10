@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyHearing : MonoBehaviour
 {
-    [SerializeField] private float hearingRadius = 5f;
+    [SerializeField] private float hearingRadius = 10f;
 
     [SerializeField] private float detectionThreshold = 0.3f;
 
