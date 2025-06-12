@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
             TimeSeconds = 0;
         }
 
-        TimeCounterGameplay.text = "Tiempo:" + TimeMinutes + ":" + Mathf.Ceil(TimeSeconds);
+        TimeCounterGameplay.text = "Tiempo: " + TimeMinutes + ":" + Mathf.Ceil(TimeSeconds);
         }
         
     }

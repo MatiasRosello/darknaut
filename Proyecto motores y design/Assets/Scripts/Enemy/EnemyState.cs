@@ -5,26 +5,41 @@ using UnityEngine.AI;
 
 public class EnemyState : MonoBehaviour
 {
+    [Header("Alerta")]
+    [Tooltip("Clip que suena cuando el enemigo detecta al jugador y antes de perseguir.")]
+    [SerializeField] private AudioClip alertClip;
+    [Tooltip("Retraso (seg) entre detectar al jugador y comenzar la persecución.")]
+    [SerializeField] private float alertDelay = 1f;
+    private AudioSource alertAudioSource;
+
+    [Header("Puntos de patrulla")]
     [SerializeField] private Transform[] waypoints;
+    [Header("Velocidades")]
     [SerializeField] private float patrolSpeed = 3f;
     [SerializeField] private float chaseMult = 1.2f;
-
+    [Header("Investigacion")]
     [SerializeField] private float investigateDuration = 3f;
 
+    [Header("Distancias de persecucion")]
     [SerializeField] public float chaseRadius = 3f;
     [SerializeField] private float loseRadius = 6f;
+
+    [Header("Referencias")]
     public Transform playerTransform;
-
-
     private NavMeshAgent agent;
+
     private int currentWaypointIndex = 0;
     private bool isInvestigating = false;
     private bool isChasing = false;
-    
+    private bool isAlerting = false;
+
+    public bool IsChasing => isChasing; //getter publico
+
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        alertAudioSource = GetComponent<AudioSource>();
         if (agent == null)
         {
             Debug.LogError($"[EnemyController] Se requiere un NavMeshAgent en {name}."); 
@@ -48,6 +63,9 @@ public class EnemyState : MonoBehaviour
 
     private void Update()
     {
+        if (isAlerting)
+            return;
+
         if (isChasing)
         {
             float distToPlayer = Vector3.Distance(transform.position, playerTransform.position);
@@ -73,19 +91,39 @@ public class EnemyState : MonoBehaviour
 
     public void ChasePlayer()
     {
-        if (playerTransform == null)
-        {
-            Debug.LogWarning($"[EnemyController] {name}: no puedo perseguir porque playerTransform es null.");
+        if (playerTransform == null || isChasing || isAlerting)
             return;
-        }
 
-        if (isChasing) return;
-
+        // Cancelamos investigación
         StopAllCoroutines();
 
-        isChasing = true;
-        agent.speed = patrolSpeed * chaseMult;
+        // Iniciamos alerta
+        StartCoroutine(AlertAndChase());
         Debug.Log($"[EnemyController] {name} entra en PERSECUCIÓN hacia {playerTransform.name}");
+    }
+
+    private IEnumerator AlertAndChase()
+    {
+        isAlerting = true;
+
+        // Sonido de alerta
+        if (alertAudioSource != null && alertClip != null )
+        {
+            alertAudioSource.PlayOneShot(alertClip);
+        }
+
+        //detenerse justo antes de perseguir
+        agent.isStopped = true;
+        yield return new WaitForSeconds(alertDelay); //Espera X segundos y vuelve a perseguir
+
+        // Iniciamos persecución
+        agent.isStopped = false;
+        isChasing = true;
+        agent.speed = patrolSpeed * 1.2f;
+        Debug.Log($"[EnemyController] {name} arranca persecución tras alerta");
+
+        isAlerting = false;
+
     }
 
     private void StopChasing()

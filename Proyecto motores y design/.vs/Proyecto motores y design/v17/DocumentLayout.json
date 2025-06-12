@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D827FB7A-9CC2-0AC4-B5EE-A90C09D94BD4}|Assembly-CSharp.csproj|d:\\carpetas\\universidad\\desarrollo de videojuegos\\cuatri2\\darknaut\\darknaut\\proyecto motores y design\\assets\\scripts\\player\\playerfootsteps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D827FB7A-9CC2-0AC4-B5EE-A90C09D94BD4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerfootsteps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D827FB7A-9CC2-0AC4-B5EE-A90C09D94BD4}|Assembly-CSharp.csproj|D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\assets\\scripts\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D827FB7A-9CC2-0AC4-B5EE-A90C09D94BD4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D827FB7A-9CC2-0AC4-B5EE-A90C09D94BD4}|Assembly-CSharp.csproj|d:\\carpetas\\universidad\\desarrollo de videojuegos\\cuatri2\\darknaut\\darknaut\\proyecto motores y design\\assets\\scripts\\enemy\\enemyfootsteps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D827FB7A-9CC2-0AC4-B5EE-A90C09D94BD4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\enemyfootsteps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D827FB7A-9CC2-0AC4-B5EE-A90C09D94BD4}|Assembly-CSharp.csproj|D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\assets\\scripts\\enemy\\enemystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D827FB7A-9CC2-0AC4-B5EE-A90C09D94BD4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\enemystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -25,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D827FB7A-9CC2-0AC4-B5EE-A90C09D94BD4}|Assembly-CSharp.csproj|D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\assets\\scripts\\enemy\\enemyhearing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D827FB7A-9CC2-0AC4-B5EE-A90C09D94BD4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\enemyhearing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D827FB7A-9CC2-0AC4-B5EE-A90C09D94BD4}|Assembly-CSharp.csproj|d:\\carpetas\\universidad\\desarrollo de videojuegos\\cuatri2\\darknaut\\darknaut\\proyecto motores y design\\assets\\scripts\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D827FB7A-9CC2-0AC4-B5EE-A90C09D94BD4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,24 +46,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
+              "Title": "EnemyFootsteps.cs",
+              "DocumentMoniker": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Enemy\\EnemyFootsteps.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\EnemyFootsteps.cs",
+              "ToolTip": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Enemy\\EnemyFootsteps.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Enemy\\EnemyFootsteps.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwE4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T18:48:34.561Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayerFootsteps.cs",
+              "DocumentMoniker": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Player\\PlayerFootsteps.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerFootsteps.cs",
+              "ToolTip": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Player\\PlayerFootsteps.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerFootsteps.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwBYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T14:40:47.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "PlayerMovement.cs",
               "DocumentMoniker": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Player\\PlayerMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerMovement.cs",
               "ToolTip": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Player\\PlayerMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerMovement.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAALQAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwI4AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-05T15:12:40.533Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "BrokenGlassCollider.cs",
               "DocumentMoniker": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Sound\\BrokenGlassCollider.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Sound\\BrokenGlassCollider.cs",
@@ -68,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "SoundManager.cs",
               "DocumentMoniker": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Managers\\SoundManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\SoundManager.cs",
@@ -81,20 +115,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "EnemyState.cs",
               "DocumentMoniker": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Enemy\\EnemyState.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\EnemyState.cs",
               "ToolTip": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Enemy\\EnemyState.cs",
               "RelativeToolTip": "Assets\\Scripts\\Enemy\\EnemyState.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAQwEgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAwwCMAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-09T22:50:57.341Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "EnemyHearing.cs",
               "DocumentMoniker": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Enemy\\EnemyHearing.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\EnemyHearing.cs",
@@ -102,12 +136,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Enemy\\EnemyHearing.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAuwB4AAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T17:47:01.804Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-05T17:47:01.804Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "PlayerThrow.cs",
               "DocumentMoniker": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Player\\PlayerThrow.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerThrow.cs",
@@ -115,12 +148,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerThrow.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAQwCkAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T16:14:06.916Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-05T16:14:06.916Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "NoiseMaker.cs",
               "DocumentMoniker": "D:\\Carpetas\\Universidad\\Desarrollo de Videojuegos\\Cuatri2\\Darknaut\\darknaut\\Proyecto motores y design\\Assets\\Scripts\\Sound\\NoiseMaker.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Sound\\NoiseMaker.cs",
@@ -128,8 +160,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Sound\\NoiseMaker.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T16:08:54.527Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-05T16:08:54.527Z"
             }
           ]
         }
