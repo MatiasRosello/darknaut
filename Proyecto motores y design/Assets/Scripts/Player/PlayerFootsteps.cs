@@ -85,7 +85,7 @@ public class PlayerFootsteps : MonoBehaviour
         SurfaceData data = null;
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out hit, 1f))
+        if (Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out hit, 5f))
         {
             // Buscamos en el array un SurfaceData que coincida con el tag
             foreach (var s in surfaces)
