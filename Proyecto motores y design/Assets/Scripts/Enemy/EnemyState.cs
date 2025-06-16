@@ -5,9 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyState : MonoBehaviour
 {
-    [Header("Alerta")]
+    [Header("Sonidos de alerta")]
     [Tooltip("Clip que suena cuando el enemigo detecta al jugador y antes de perseguir.")]
     [SerializeField] private AudioClip alertClip;
+    [Tooltip("Clip que suena cuando el enemigo comienza a investigar un sonido.")]
+    [SerializeField] private AudioClip investigateClip;
     [Tooltip("Retraso (seg) entre detectar al jugador y comenzar la persecución.")]
     [SerializeField] private float alertDelay = 1f;
     private AudioSource alertAudioSource;
@@ -119,7 +121,7 @@ public class EnemyState : MonoBehaviour
         // Iniciamos persecución
         agent.isStopped = false;
         isChasing = true;
-        agent.speed = patrolSpeed * 1.2f;
+        agent.speed = patrolSpeed * chaseMult;
         Debug.Log($"[EnemyController] {name} arranca persecución tras alerta");
 
         isAlerting = false;
@@ -179,6 +181,11 @@ public class EnemyState : MonoBehaviour
     private IEnumerator InvestigateCoroutine(Vector3 noisePosition)  // Rutina que mueve al enemigo a noisePosition, espera y retorna a patrullar.
     {
         isInvestigating = true;
+
+        if (alertAudioSource != null && alertClip != null)
+        {
+            alertAudioSource.PlayOneShot(investigateClip);
+        }
 
         // Ajustamos la Y del destino a la del enemigo (evitamos que intente ir a una altura distinta)
         Vector3 adjustedNoisePos = new Vector3(noisePosition.x, transform.position.y, noisePosition.z);

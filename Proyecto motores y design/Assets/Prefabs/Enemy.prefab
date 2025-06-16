@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alertClip: {fileID: 8300000, guid: d67c90f4da711dd45a40e9614ae19e33, type: 3}
+  investigateClip: {fileID: 8300000, guid: 051707a2507f0aa4489ca92d7d10c035, type: 3}
   alertDelay: 0.5
   waypoints: []
   patrolSpeed: 3

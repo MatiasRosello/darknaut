@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 6365343050960333822}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,6 +199,7 @@ MonoBehaviour:
     crouchIntensity: 0.5
   playerMovement: {fileID: 0}
   audioSource: {fileID: 3352916178301713480}
+  baseFootsetpVolume: 0.7
   runInterval: 0.4
   walkInterval: 0.6
   crouchInterval: 1.2
