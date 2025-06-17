@@ -19,11 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Referencias")]
     private Rigidbody rb;
-    //private BrokenGlassCollider glass;
     [SerializeField] private Camera mainCamera;
 
-    //VARIABLE DE PANTALLA DE VICTORIA CREADA POR TOMAS
-    private bool IsWin;
 
     private PlayerSounds source;
 
@@ -48,16 +45,10 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerMove();
         PlayerRotate();
-        
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             UIManager.inst.ShowPauseScreen();
-        }
-
-        if (!UIManager.inst.Pause) // Solo permite movimiento y rotaci�n si no est� en pausa
-        {
-            
         }
     }
 
@@ -135,12 +126,6 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             IsGrounded = true;
-        }
-
-        if (collision.gameObject.tag == "End" && !IsWin)
-        {
-            UIManager.inst.ShowWinScreen();
-            IsWin = true;
         }
     }
 
