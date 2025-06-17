@@ -9,6 +9,11 @@ public class PlayerThrow : MonoBehaviour
     [SerializeField] private float coinLaunchForce = 10f;
     [SerializeField] private float launchColdown = 0.5f;
 
+    [SerializeField] private AudioSource audioSource;
+
+    [Header("Sonido tirar moneda")]
+    [SerializeField] private AudioClip coinToss;
+
     private float lastLaunchTime = 0f;
 
     private void Update()
@@ -22,6 +27,7 @@ public class PlayerThrow : MonoBehaviour
         {
             ThrowCoin();
             lastLaunchTime = Time.time;
+            audioSource.PlayOneShot(coinToss);
         }
     }
 
