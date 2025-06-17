@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 1477113721961165938}
   - component: {fileID: 3252275698053149706}
   - component: {fileID: 4923771696463320975}
+  - component: {fileID: 7324363832210427671}
   - component: {fileID: 8402172922366477060}
   - component: {fileID: 461503876849824545}
   - component: {fileID: 5830522042776958511}
@@ -369,11 +370,32 @@ MonoBehaviour:
   alertDelay: 0.5
   waypoints: []
   patrolSpeed: 3
-  chaseMult: 1.8
+  chaseMult: 1.65
   investigateDuration: 4
   chaseRadius: 3
   loseRadius: 6
+  isRummager: 0
+  rummagePoint: {fileID: 0}
   playerTransform: {fileID: 0}
+--- !u!114 &7324363832210427671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4568001028110198292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74955c96fc4036140b1e94efb5d24bdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rummageClips:
+  - {fileID: 8300000, guid: 548b0c95102474c4b95a8f0bb5a46315, type: 3}
+  - {fileID: 8300000, guid: 6f5b36b0318e91547868999852182635, type: 3}
+  - {fileID: 8300000, guid: 82e3cb4138d9af040a655ba41108965e, type: 3}
+  - {fileID: 8300000, guid: c03bd91619d39b34cb1efb2c2f69eb17, type: 3}
+  minInterval: 2
+  maxInterval: 5
 --- !u!114 &8402172922366477060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,9 +408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d34068df95cfb4e8ba2ffa028b4424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hearingRadius: 5
-  detectionThreshold: 0.3
-  playerMakingSoundThreshold: 1
+  hearingRadius: 11
+  detectionThreshold: 0.5
+  playerMakingSoundThreshold: 3
   playerTransform: {fileID: 0}
 --- !u!114 &461503876849824545
 MonoBehaviour:
@@ -524,7 +546,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.027777778
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -539,7 +561,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 1.058
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -558,7 +580,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4568001028110198292}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50

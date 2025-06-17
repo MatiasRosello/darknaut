@@ -6,7 +6,13 @@ public class NoiseMaker : MonoBehaviour
 {
     [SerializeField] private float noiseIntensity = 1f;
 
-    [SerializeField] private float destroyDelay = 0.2f;
+    [SerializeField] private float destroyDelay = 0.5f;
+
+    [SerializeField] private AudioSource audioSource;
+
+    [Header("Sonido moneda")]
+    [SerializeField] private AudioClip coinBounce;
+
 
     private bool hasMadeNoise = false;
 
@@ -18,6 +24,7 @@ public class NoiseMaker : MonoBehaviour
         hasMadeNoise = true;
 
         SoundManager.Instance.MakeNoise(transform.position, noiseIntensity);
+        audioSource.PlayOneShot(coinBounce);
 
         Destroy(gameObject, destroyDelay);
     }

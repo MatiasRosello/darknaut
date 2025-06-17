@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Referencias")]
     private Rigidbody rb;
-    private BrokenGlassCollider glass;
+    //private BrokenGlassCollider glass;
     [SerializeField] private Camera mainCamera;
 
     //VARIABLE DE PANTALLA DE VICTORIA CREADA POR TOMAS
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         source = GetComponent<PlayerSounds>();
         rb = GetComponent<Rigidbody>();
-        glass = GameObject.FindGameObjectWithTag("Glass").GetComponent<BrokenGlassCollider>();
+        //glass = GameObject.FindGameObjectWithTag("Glass").GetComponent<BrokenGlassCollider>();
 
         if (mainCamera == null)
         {

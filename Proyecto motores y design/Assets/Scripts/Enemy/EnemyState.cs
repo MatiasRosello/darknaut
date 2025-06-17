@@ -26,9 +26,16 @@ public class EnemyState : MonoBehaviour
     [SerializeField] public float chaseRadius = 3f;
     [SerializeField] private float loseRadius = 6f;
 
+    [Header("Tipo de enemigo")]
+    [Tooltip("Si es true, este enemigo no patrulla: rebusca en un punto fijo.")]
+    [SerializeField] private bool isRummager = false;
+    [Tooltip("Transform que marca el punto fijo de rummaging.")]
+    [SerializeField] private Transform rummagePoint;
+
     [Header("Referencias")]
     public Transform playerTransform;
     private NavMeshAgent agent;
+    private RummagingBehavior rummager;
 
     private int currentWaypointIndex = 0;
     private bool isInvestigating = false;
@@ -42,6 +49,7 @@ public class EnemyState : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         alertAudioSource = GetComponent<AudioSource>();
+        rummager = GetComponent<RummagingBehavior>();
         if (agent == null)
         {
             Debug.LogError($"[EnemyController] Se requiere un NavMeshAgent en {name}."); 
@@ -57,9 +65,25 @@ public class EnemyState : MonoBehaviour
         }
 
         agent.speed = patrolSpeed;
-        if (waypoints != null && waypoints.Length > 0)
+
+        if (isRummager)
         {
-            agent.SetDestination(waypoints[currentWaypointIndex].position);
+            if (rummagePoint != null)   // Posicionar al enemigo exactamente en su punto de revolver basura
+            {
+                transform.position = rummagePoint.position;
+            }
+            if (rummager != null)   // Arrancar la rutina de rebuscar
+            {
+                rummager.StartRummaging();
+            }
+                
+        }
+        else   // Patrulla normal: vamos al primer waypoint
+        {
+            if (waypoints != null && waypoints.Length > 0)
+            {
+                agent.SetDestination(waypoints[currentWaypointIndex].position);
+            }
         }
     }
 
@@ -118,6 +142,11 @@ public class EnemyState : MonoBehaviour
         agent.isStopped = true;
         yield return new WaitForSeconds(alertDelay); //Espera X segundos y vuelve a perseguir
 
+        if (isRummager && rummager != null)
+        {
+            rummager.StopRummaging();
+        }
+
         // Iniciamos persecución
         agent.isStopped = false;
         isChasing = true;
@@ -125,6 +154,7 @@ public class EnemyState : MonoBehaviour
         Debug.Log($"[EnemyController] {name} arranca persecución tras alerta");
 
         isAlerting = false;
+        yield break;
 
     }
 
@@ -135,27 +165,42 @@ public class EnemyState : MonoBehaviour
 
         agent.speed = patrolSpeed;
 
-        // Encontrar el waypoint más cercano para reanudar la patrulla:
-        if (waypoints != null && waypoints.Length > 0)
+        if (isRummager)
         {
-            float minDist = float.MaxValue;
-            int closestIndex = 0;
-            for (int i = 0; i < waypoints.Length; i++)
+            if (rummagePoint != null)  // Regresar al punto de rummage
             {
-                float dist = Vector3.Distance(transform.position, waypoints[i].position);
-                if (dist < minDist)
-                {
-                    minDist = dist;
-                    closestIndex = i;
-                }
+                agent.SetDestination(rummagePoint.position);
             }
-            currentWaypointIndex = closestIndex;
-            agent.SetDestination(waypoints[currentWaypointIndex].position);
-            Debug.Log($"[EnemyController] {name} pierde al jugador y vuelve a patrullar hacia {waypoints[currentWaypointIndex].name}");
+            
+            if (rummager != null)   // Reanudar rutina
+            {
+                rummager.StartRummaging();
+            }
         }
         else
         {
-            Debug.LogWarning($"[EnemyController] {name} no tiene waypoints asignados para reanudar patrulla.");
+            // Encontrar el waypoint más cercano para reanudar la patrulla:
+            if (waypoints != null && waypoints.Length > 0)
+            {
+                float minDist = float.MaxValue;
+                int closestIndex = 0;
+                for (int i = 0; i < waypoints.Length; i++)
+                {
+                    float dist = Vector3.Distance(transform.position, waypoints[i].position);
+                    if (dist < minDist)
+                    {
+                        minDist = dist;
+                        closestIndex = i;
+                    }
+                }
+                currentWaypointIndex = closestIndex;
+                agent.SetDestination(waypoints[currentWaypointIndex].position);
+                Debug.Log($"[EnemyController] {name} pierde al jugador y vuelve a patrullar hacia {waypoints[currentWaypointIndex].name}");
+            }
+            else
+            {
+                Debug.LogWarning($"[EnemyController] {name} no tiene waypoints asignados para reanudar patrulla.");
+            }
         }
     }
 
@@ -171,8 +216,14 @@ public class EnemyState : MonoBehaviour
 
     public void InvestigateNoise(Vector3 noisePosition)
     {
-        // Si ya está investigando algo, ignoramos nuevos ruidos hasta terminar
-        if (isInvestigating) return;
+        // Si ya está investigando o alertando o persiguiendo, ignora
+        if (isInvestigating || isChasing || isAlerting) return;
+
+        // Detener rummaging si aplica
+        if (isRummager && rummager != null)
+        {
+            rummager.StopRummaging();
+        }
 
         StopAllCoroutines();
         StartCoroutine(InvestigateCoroutine(noisePosition));
@@ -182,16 +233,14 @@ public class EnemyState : MonoBehaviour
     {
         isInvestigating = true;
 
-        if (alertAudioSource != null && alertClip != null)
+        if (alertAudioSource != null && alertClip != null) //Reproduce sonido de alerta cuando va a investigar
         {
             alertAudioSource.PlayOneShot(investigateClip);
         }
 
-        // Ajustamos la Y del destino a la del enemigo (evitamos que intente ir a una altura distinta)
-        Vector3 adjustedNoisePos = new Vector3(noisePosition.x, transform.position.y, noisePosition.z);
+        Vector3 investigatePosition = new Vector3(noisePosition.x, transform.position.y, noisePosition.z);  //toma la posicion del ruido ajustando la altura a la del enemigo (para evitar problemas de aluta)
 
-        agent.SetDestination(noisePosition);
-
+        agent.SetDestination(investigatePosition);
         while (!agent.pathPending && agent.remainingDistance > agent.stoppingDistance)
         {
             yield return null;
@@ -201,6 +250,21 @@ public class EnemyState : MonoBehaviour
 
         isInvestigating = false;
         agent.speed = patrolSpeed;
-        GoNextWaypoint();
+
+        if (isRummager)
+        {
+            if (rummagePoint != null)  // Volver al punto de rummage
+            {
+                agent.SetDestination(rummagePoint.position);
+            }
+            if (rummager != null)   // Reanudar rebuscar
+            {
+                rummager.StartRummaging();
+            }
+        }
+        else   // Patrulla normal
+        {
+            GoNextWaypoint();
+        }  
     }
 }
