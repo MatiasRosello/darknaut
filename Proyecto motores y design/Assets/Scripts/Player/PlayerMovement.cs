@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Velocidades")]
-    [SerializeField] private float playerSpeed;
+    [SerializeField] public float playerSpeed;
     [SerializeField] private float walkSpeed = 15f;
     [SerializeField] private float crouchMult = 0.8f;
     [SerializeField] private float runningMult = 1.3f;
@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Estados")]
     public bool IsGrounded;
     public bool playerOnGlass;
+    
 
     [Header("Referencias")]
     private Rigidbody rb;

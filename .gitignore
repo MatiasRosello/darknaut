@@ -20,4 +20,15 @@ AssetStoreTools*
 # Archivos autogenerados
 *.pidb.meta
 *.pdb.meta
+<<<<<<< Updated upstream
 *.mdb.meta
+=======
+*.mdb.meta
+Proyecto motores y design/ProjectSettings/EditorBuildSettings.asset
+Proyecto motores y design/UserSettings/EditorUserSettings.asset
+Proyecto motores y design/UserSettings/Layouts/default-2022.dwlt
+Proyecto motores y design/UserSettings/EditorUserSettings.asset
+Proyecto motores y design/UserSettings/EditorUserSettings.asset
+>>>>>>> Stashed changes
+Proyecto motores y design/UserSettings/EditorUserSettings.asset
+Proyecto motores y design/UserSettings/Layouts/default-2022.dwlt
