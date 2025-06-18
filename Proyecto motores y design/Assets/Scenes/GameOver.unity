@@ -357,7 +357,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2049937430409420450, guid: 375535161e08ef745a1727c16868a926,
           type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: RetryLevel
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

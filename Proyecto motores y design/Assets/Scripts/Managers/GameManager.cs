@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {  get; private set; }
 
-    [Header("Configuración de Escenas")]
+    [Header("Configuraciï¿½n de Escenas")]
     [Tooltip("Nombre de la escena de Game Over")]
     [SerializeField] private string gameOverScene = "GameOver";
     [Tooltip("Nombre de la escena de Victoria")]
@@ -69,6 +69,18 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevelComplete()
     {
-        SceneManager.LoadScene("LevelComplete");
+        int escenaActualIndex = SceneManager.GetActiveScene().buildIndex;
+        int totalEscenas = SceneManager.sceneCountInBuildSettings;
+
+        if (escenaActualIndex + 1 < totalEscenas)
+        {
+        // Carga la siguiente escena en el orden del Build Settings
+            SceneManager.LoadScene(escenaActualIndex + 1);
+        }
+    else
+        {
+        // Si no hay mÃ¡s escenas, carga la de victoria
+            SceneManager.LoadScene("YouWin");
+        }
     }
 }
