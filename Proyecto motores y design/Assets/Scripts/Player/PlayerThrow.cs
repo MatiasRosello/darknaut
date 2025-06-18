@@ -10,11 +10,17 @@ public class PlayerThrow : MonoBehaviour
     [SerializeField] private float launchColdown = 0.5f;
 
     [SerializeField] private AudioSource audioSource;
+    private Animator animator;
 
     [Header("Sonido tirar moneda")]
     [SerializeField] private AudioClip coinToss;
 
     private float lastLaunchTime = 0f;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -25,7 +31,7 @@ public class PlayerThrow : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.E) && Time.time >= lastLaunchTime + launchColdown)
         {
-            ThrowCoin();
+            animator.SetTrigger("Throw");
             lastLaunchTime = Time.time;
             audioSource.PlayOneShot(coinToss);
         }
@@ -38,6 +44,7 @@ public class PlayerThrow : MonoBehaviour
             Debug.LogWarning("No hay coinPrefab o coinSpawnPoint asignado en PlayerMovement.");
             return;
         }
+        
 
         GameObject coinInstance = Instantiate(coinPrefab, coinSpawnPoint.position, Quaternion.identity);
 
