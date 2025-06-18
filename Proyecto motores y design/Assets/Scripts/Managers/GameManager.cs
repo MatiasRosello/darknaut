@@ -30,15 +30,45 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Lose()
+    public void LoadMainMenu()
     {
-        Debug.Log("[GameManager] Derrota: cargando escena Game Over.");
-        SceneManager.LoadScene(gameOverScene);
+        SceneManager.LoadScene("MainMenu");
     }
 
-    public void Win()
+    public void LoadOptions()
     {
-        Debug.Log("[GameManager] Victoria: cargando escena Victory.");
-        SceneManager.LoadScene(victoryScene);
+        SceneManager.LoadScene("Opciones");
+    }
+        
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Nivel1");
+    }
+
+    public void LoadLevel(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
+    }
+
+    public void RetryLevel()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game closed"); // Solo para editor
+    }
+
+    public void LoadGameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
+
+    public void LoadLevelComplete()
+    {
+        SceneManager.LoadScene("LevelComplete");
     }
 }

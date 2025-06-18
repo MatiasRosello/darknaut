@@ -5,12 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenuScene.unity
     guid: 3de9f0db36921db4387f11bd473cbfea
   - enabled: 1
-    path: Assets/Scenes/Nivel 1.unity
+    path: Assets/Scenes/Nivel1.unity
     guid: f69822c005213984ebe69b1277cc2138
+  - enabled: 1
+    path: Assets/Scenes/Nivel2.unity
+    guid: c67d6d75e929d1a4eb5fea6d9b9e8e3e
+  - enabled: 1
+    path: Assets/Scenes/Nivel3.unity
+    guid: ba85db97f388efa4daf4331a8d1afd37
   - enabled: 1
     path: Assets/Scenes/MainPrototipo-Tomi.unity
     guid: 00dc0a8e0b012bc49ad5123b8bc351d3
@@ -23,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadingScreen.unity
     guid: ba3a4c89ada91084fa6ef65237ce714c
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: be8bd27e48e34f142a97cba770f697aa
   m_configObjects: {}

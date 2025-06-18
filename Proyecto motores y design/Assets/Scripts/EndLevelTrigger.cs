@@ -9,7 +9,7 @@ public class EndLevelTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("[LevelEndTrigger] Jugador llegó al final: ¡Victoria!");
-            GameManager.Instance.Win();
+            GameManager.Instance.LoadLevelComplete();
         }
     }
 }

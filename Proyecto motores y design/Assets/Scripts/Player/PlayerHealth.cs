@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public UnityEvent<int, int> OnHealthChanged; // pasa (current, max)
     public UnityEvent OnPlayerDied;
 
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -40,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("[PlayerHealth] El jugador ha muerto.");
         OnPlayerDied?.Invoke();
+        GameManager.Instance.LoadGameOver();
     }
 
     public bool IsAlive()
