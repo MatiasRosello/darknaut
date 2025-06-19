@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
+
 using UnityEngine;
 
 
@@ -34,7 +34,7 @@ public class PlayerFootsteps : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
 
     [Header("Volumen")]
-    [Tooltip("Volumen máximo de las pisadas (0–1). Se multiplica por la intensidad.")]
+    [Tooltip("Volumen mï¿½ximo de las pisadas (0ï¿½1). Se multiplica por la intensidad.")]
     [SerializeField] private float baseFootsetpVolume = 0.7f;
 
     [Header("Intervalos (segs)")]
@@ -72,7 +72,7 @@ public class PlayerFootsteps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Solo emitimos ruido si está en el suelo y hay input de movimiento
+        //Solo emitimos ruido si estï¿½ en el suelo y hay input de movimiento
         Vector3 moveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         if (!playerMovement.IsGrounded || moveInput.magnitude == 0f) return;
