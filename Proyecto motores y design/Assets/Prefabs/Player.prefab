@@ -136,8 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67bc50ec6fd5c0d428b4e64cd53df794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 0.5
-  deceleration: 0.6
 --- !u!114 &4884825314025355806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,12 +201,8 @@ MonoBehaviour:
   maxHealth: 100
   damageAmount: 50
   currentHealth: 0
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPlayerDied:
-    m_PersistentCalls:
-      m_Calls: []
+  dyingSound: {fileID: 8300000, guid: 5a62d7f69b249104992f23858a740209, type: 3}
+  hurtSound: {fileID: 8300000, guid: 82dc722bac04d7245ae95ab71600975a, type: 3}
 --- !u!114 &2787075939988167069
 MonoBehaviour:
   m_ObjectHideFlags: 0

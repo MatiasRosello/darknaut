@@ -82,7 +82,7 @@ Material:
     - _StencilWriteMask: 255
     - _Strength: 0.2
     m_Colors:
-    - _Color: {r: 0.77433455, g: 0.7924528, b: 0.5494837, a: 0.3137255}
+    - _Color: {r: 0.7644179, g: 0.7924528, b: 0.4448202, a: 0.50980395}
     - _EmisColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _Scale: {r: 1, g: 1, b: 1, a: 1}
