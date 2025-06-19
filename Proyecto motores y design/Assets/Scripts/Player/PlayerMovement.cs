@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float walkSpeed = 15f;
     [SerializeField] private float crouchMult = 0.8f;
     [SerializeField] private float runningMult = 1.3f;
-    [SerializeField] private float JumpForce = 6f;
 
     [Header("Rotación")]
     [SerializeField] private float rotationSpeed = 10f;
@@ -67,11 +66,6 @@ public class PlayerMovement : MonoBehaviour
         else    //se asigna la velocidad base de caminar
         {
             playerSpeed = walkSpeed;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
         }
 
         Vector3 direction = Vector3.forward * y + Vector3.right * x;

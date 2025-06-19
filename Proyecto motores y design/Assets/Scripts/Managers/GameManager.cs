@@ -7,15 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {  get; private set; }
 
-    [Header("Configuraci�n de Escenas")]
-    [Tooltip("Nombre de la escena de Game Over")]
-    [SerializeField] private string gameOverScene = "GameOver";
-    [Tooltip("Nombre de la escena de Victoria")]
-    [SerializeField] private string victoryScene = "Victory";
-    [Tooltip("Nombre de la escena de Menu")]
-    [SerializeField] private string mainMenuScene = "MainMenu";
-    [Tooltip("Nombre de la escena de Opciones")]
-    [SerializeField] private string optionsScene = "Options";
 
     private void Awake()
     {
