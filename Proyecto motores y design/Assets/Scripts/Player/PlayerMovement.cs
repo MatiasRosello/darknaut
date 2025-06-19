@@ -45,11 +45,6 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerMove();
         PlayerRotate();
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            UIManager.inst.ShowPauseScreen();
-        }
     }
 
     private void PlayerMove()
@@ -109,16 +104,6 @@ public class PlayerMovement : MonoBehaviour
 
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
-    }
-
-    public void Jump()
-    {
-        if (IsGrounded)
-        {
-            source.PlayJumpNoise();
-            rb.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
-        }
-
     }
 
     public void OnCollisionEnter(Collision collision)

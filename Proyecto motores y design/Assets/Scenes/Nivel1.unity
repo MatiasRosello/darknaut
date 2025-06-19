@@ -8039,6 +8039,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 181294801668677978, guid: eb959aa01a7d43945a802e6d28161432,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1452450573880241071, guid: eb959aa01a7d43945a802e6d28161432,
         type: 3}
       propertyPath: m_Name
@@ -8077,7 +8082,7 @@ PrefabInstance:
     - target: {fileID: 4813334694426518217, guid: eb959aa01a7d43945a802e6d28161432,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -83.51
+      value: -84.33
       objectReference: {fileID: 0}
     - target: {fileID: 4813334694426518217, guid: eb959aa01a7d43945a802e6d28161432,
         type: 3}
@@ -8087,7 +8092,7 @@ PrefabInstance:
     - target: {fileID: 4813334694426518217, guid: eb959aa01a7d43945a802e6d28161432,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.91
+      value: 21.06
       objectReference: {fileID: 0}
     - target: {fileID: 4813334694426518217, guid: eb959aa01a7d43945a802e6d28161432,
         type: 3}
@@ -8405,6 +8410,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4923771696463320975, guid: e5077f6373a43ed4ebacdc86115f1dc9,
         type: 3}
+      propertyPath: loseRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4923771696463320975, guid: e5077f6373a43ed4ebacdc86115f1dc9,
+        type: 3}
+      propertyPath: chaseRadius
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4923771696463320975, guid: e5077f6373a43ed4ebacdc86115f1dc9,
+        type: 3}
       propertyPath: rummagePoint
       value: 
       objectReference: {fileID: 1762330436}
@@ -8463,10 +8478,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5613811213369819322, guid: e5077f6373a43ed4ebacdc86115f1dc9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8402172922366477060, guid: e5077f6373a43ed4ebacdc86115f1dc9,
         type: 3}
       propertyPath: hearingRadius
-      value: 15
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8402172922366477060, guid: e5077f6373a43ed4ebacdc86115f1dc9,
         type: 3}

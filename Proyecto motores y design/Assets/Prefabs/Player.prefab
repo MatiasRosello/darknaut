@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 0}
-  coinSpawnPoint: {fileID: 0}
+  coinSpawnPoint: {fileID: 7605134515984234082}
   coinLaunchForce: 10
   launchColdown: 3
   audioSource: {fileID: 3352916178301713480}
@@ -199,7 +199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  damageAmount: 50
   currentHealth: 0
   dyingSound: {fileID: 8300000, guid: 5a62d7f69b249104992f23858a740209, type: 3}
   hurtSound: {fileID: 8300000, guid: 82dc722bac04d7245ae95ab71600975a, type: 3}
@@ -225,7 +224,8 @@ AudioSource:
   m_GameObject: {fileID: 542009613281995925}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8536356628623039966, guid: 7efa2ff0e1117f64eaaaebfe18a53ed3,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
